@@ -1,0 +1,24 @@
+{
+  "name": "Solus",
+  "description": "A homepage that cares",
+  "type": "privileged",
+  "launch_path": "/index.html",
+  "icons": {
+    "512": "/images/sol_512.png",
+    "128": "/images/sol_128.png"
+  },
+  "developer": {
+    "name": "Luisa de Miranda",
+    "url": ""
+  },
+  "default_locale": "en",
+  "permissions": {
+    "audio-capture" : {
+      "description" : "Audio capture"
+    },
+    "speech-recognition" : {
+      "description" : "Speech recognition"
+    }
+  }
+}
+
