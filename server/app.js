@@ -17,7 +17,7 @@ module.exports = app
     .use(express.static(path.join(__dirname, '../public')))
 
     .use('/github', function(req, res, next){
-        res.redirect('https://github.com/luisamiranda/solus')
+        res.redirect('https://github.com/luisamiranda/solus-react')
     })
     .use(function(err, req, res, next) {
         console.error(err)

@@ -38,13 +38,11 @@ var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
 
 speechRecognitionList.addFromString(grammar, 1);
-// recognition.continuous = true;
-// recognition.interimResults = true;
 recognition.grammars = speechRecognitionList;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
-
+console.log(recognition.serviceURI);
 /*------------ Speech Synthesis ------------ */
 function say (response) {
   var utterance = new SpeechSynthesisUtterance(response);
@@ -56,11 +54,11 @@ function say (response) {
 
 /*----------- Begin Converstation ----------- */
 var diagnostic = document.querySelector('.output');
-var bg = document.querySelector('html');
+var bg = document.querySelector('body');
 
 document.body.onload = function() {
   say("How are you?");
-  setTimeout(() =>{recognition.start()}, 1000);
+  setTimeout(() => { recognition.start() }, 1500);
   console.log('Ready to receive.');
 }
 
@@ -69,25 +67,25 @@ recognition.onresult = function (event) {
   var last = event.results.length - 1;
   var input = event.results[last][0].transcript;
   
-  diagnostic.textContent = 'Result received: ' + input + '.';
+  diagnostic.textContent = 'I heard you say: ' + input + '.';
   /*---------- Create Bot Response ------------ */
   function interpret(input) {
     if (goodMoods.includes(input)){
-      bg.style.background = "url('images/solace-2.jpg')";
+      bg.style.background = "url('images/dusk-1.jpg')";
       return;
     } else if (badMoods.includes(input)){
-      bg.style.background = "url('images/solace-1.jpg')";
+      bg.style.background = "url('images/sunrise-1.jpg')";
       return;
     } else if (ambivalent.includes(input)) {
-      bg.style.background = "url('images/solace-1.jpg')";
+      bg.style.background = "url('images/midday-1.jpg')";
       say("Tell me more.");
-      setTimeout(() =>{recognition.start()}, 2000);
-      recognition.onresult = function(event) {
-        var last = event.results.length - 1;
-        var input = event.results[last][0].transcript;
-        diagnostic.textContent = 'Result received: ' + input + '.';
-        interpret(input);
-      }
+      // setTimeout(() =>{recognition.start()}, 2000);
+      // recognition.onresult = function(event) {
+      //   var last = event.results.length - 1;
+      //   var input = event.results[last][0].transcript;
+      //   diagnostic.textContent = 'Result received: ' + input + '.';
+      //   interpret(input);
+      // }
     }
   }
   interpret(input);
